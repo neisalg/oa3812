@@ -3,9 +3,9 @@
         <div class="col-lg-8 offset-lg-2">
             <div class="card">
                 <div class="card-body text-center">
-                    <span class="Titulo">LISTAS DE PRODUCTOS</span>
+                    <span class="Titulo">Listas de Productos</span>
                     <button class="btn btn-success float-end" routerLink="/crear-producto">Crear Producto</button>
-                    <table class="table table-striped mt-5">
+                    <table *ngIf="listProductos.length > 0" class="table table-striped mt-5">
                         <thead>
                           <tr>
                             <th scope="col">Código</th>
@@ -14,50 +14,25 @@
                             <th scope="col">Valor</th>
                             <th scope="col">Categoria</th>
                             <th scope="col">Stock</th>
-                            <th scope="col"> </th>
-                            <th scope="col"> </th>
-
+                            <th scope="col"> </th>                          
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">OA-001</th>
-                            <td>Ducha Boccherini</td>
-                            <td>Ducha con cabezal intercambiable</td>
-                            <td>130000</td>
-                            <td>Duchas</td>
-                            <td>5</td>
+                          <tr *ngFor="let producto of listProductos">
+                            <td>{{producto.Codigo}}</td>
+                            <td>{{producto.Nombre}}</td>
+                            <td>{{producto.Descripcion}}</td>
+                            <td>{{producto.Valor | currency: 'COP'}}</td>
+                            <td>{{producto.Categoria}}</td>
+                            <td>{{producto.Stock}}</td>
                             <td>
-                              <i class="fas fa-edit text-primary"></i>
-                              <i class="fas fa-trash-alt text-danger"></i>
+                              <i [routerLink]="['/editar-producto', producto._id]" class="fas fa-edit text-primary"></i>
+                              <i (click)="eliminarProducto(producto._id)" class="fas fa-trash-alt text-danger"></i>
                             </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">OA-002</th>
-                            <td>Ducha Boccherini</td>
-                            <td>Ducha selectora de temperatura</td>
-                            <td>95000</td>
-                            <td>Duchas</td>
-                            <td>3</td>
-                            <td>
-                              <i class="fas fa-edit text-primary"></i>
-                              <i class="fas fa-trash-alt text-danger"></i>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">OA-003</th>
-                            <td>Ducha Boccherini</td>
-                            <td>Ducha para calentador de gas 8pulg con tubo - Cuadrada</td>
-                            <td>65000</td>
-                            <td>Duchas</td>
-                            <td>8</td>
-                            <td>
-                              <i class="fas fa-edit text-primary"></i>
-                              <i class="fas fa-trash-alt text-danger"></i>
-                            </td>
-                          </tr>
+                          </tr>                         
                         </tbody>
-                      </table>            
+                      </table> 
+                      <h5 *ngIf="listProductos.length == 0">No hay productos para mostrar</h5>           
                 </div>            
             </div>
         </div>

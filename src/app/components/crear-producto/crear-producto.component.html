@@ -3,25 +3,35 @@
         <div class="col-lg-6 offset-lg-3">
             <div class="card">
                 <div class="card-body text-center">
-                    <span class="Titulo">Crear Producto</span>
-                    <form>
+                    <span class="Titulo">{{Titulo | uppercase}}</span>
+                    <form class="mt-3" [formGroup]="productoForm" (ngSubmit)="agregarProducto()">
                         <div class="mb-3">
-                        <input type="text" class="form-control form-control-lg" placeholder="Código">
+                        <input type="text" formControlName="Codigo" 
+                        class="form-control form-control-lg" placeholder="Código">
                         </div>
                         <div class="mb-3">
-                        <input type="text" class="form-control form-control-lg" placeholder="Nombre">
+                        <input type="text" formControlName="Nombre" 
+                        class="form-control form-control-lg" placeholder="Nombre">
                         </div>
                         <div class="mb-3">
-                        <input type="text" class="form-control form-control-lg" placeholder="Descripción">
+                        <input type="text" formControlName="Descripcion" 
+                        class="form-control form-control-lg" placeholder="Descripción">
                         </div>
                         <div class="mb-3">
-                        <input type="number" class="form-control form-control-lg" placeholder="Valor">
+                        <input type="number" formControlName="Valor" 
+                        class="form-control form-control-lg" placeholder="Valor">
                         </div>
                         <div class="mb-3">
-                        <input type="text" class="form-control form-control-lg" placeholder="Categoria">
+                        <input type="text" formControlName="Categoria" 
+                        class="form-control form-control-lg" placeholder="Categoria">
                         </div>
                         <div class="mb-3">
-                        <input type="number" class="form-control form-control-lg" placeholder="Stock">
+                        <input type="number" formControlName="Stock" 
+                        class="form-control form-control-lg" placeholder="Stock">
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-outline-info btn-lg float-start" routerLink="/">Volver a Inicio</button>
+                            <button type="submit" [disabled]="productoForm.invalid" class="btn btn-success btn-lg float-end">Guardar Producto</button>
                         </div>
                     </form>
                 </div>    
